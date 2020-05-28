@@ -4,40 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    public static void main(String[] args) {
+        Vertex a = new Vertex("A");
+        Vertex b = new Vertex("B");
+        Vertex c = new Vertex("C");
+        Vertex d = new Vertex("D");
+        Vertex e = new Vertex("E");
+        Vertex f = new Vertex("F");
 
-    public static void main(String[] args)
-    {
-        int V = 5;
-        int source = 0;
+        a.addNeighbour(new Edge(10, a, b));
+        a.addNeighbour(new Edge(15, a, c));
 
-        // Adjacency list representation of the
-        // connected edges
-        List<List<Reis> > adj = new ArrayList<List<Reis> >();
+        b.addNeighbour(new Edge(12, b, d));
+        b.addNeighbour(new Edge(15, b, f));
 
-        // Initialize list for every node
-        for (int i = 0; i < V; i++) {
-            List<Reis> item = new ArrayList<Reis>();
-            adj.add(item);
-        }
+        c.addNeighbour(new Edge(10, c, e));
 
-        // Inputs for the DPQ graph
-        adj.get(0).add(new Reis(1, 9));
-        adj.get(0).add(new Reis(2, 6));
-        adj.get(0).add(new Reis(3, 5));
-        adj.get(0).add(new Reis(4, 3));
+        d.addNeighbour(new Edge(1, d, f));
+        d.addNeighbour(new Edge(2, d, e));
 
-        adj.get(2).add(new Reis(1, 2));
-        adj.get(2).add(new Reis(3, 4));
+        f.addNeighbour(new Edge(5, f, e));
 
-        // Calculate the single source shortest path
-        Stap dpq = new Stap(V);
-        dpq.dijkstra(adj, source);
+        Dijkstra dijkstra = new Dijkstra();
+        dijkstra.computePath(a);
 
-        // Print the shortest path to all the nodes
-        // from the source node
-        System.out.println("The shorted path from node :");
-        for (int i = 0; i < dpq.dist.length; i++)
-            System.out.println(source + " to " + i + " is "
-                    + dpq.dist[i]);
+        System.out.println(dijkstra.getShortestPathTo(e));
     }
 }
+
+//bron algorithm
+//https://gist.github.com/artlovan/a07f29e16ab725f8077157de7abdf125

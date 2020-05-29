@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        //first journey
         Reis AE = new Reis("A to E");
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
@@ -31,13 +32,9 @@ public class Main {
         AE.setWeight(e.getMinDistance());
         AE.setWeightType(a.getStaps().get(0).getWeightType());
 
-        System.out.println("The Shortest Path To " + e.toString() + " = " + dijkstra.getShortestPathTo(e));
-        System.out.println(e.getMinDistance() + " " + a.getStaps().get(0).getWeightType());
-
         System.out.println(AE.toString());
 
-
-
+        //second journey
         Vertex utrecht = new Vertex("Utrecht Centraal");
         Vertex amsterdam = new Vertex("Amsterdam Centraal");
         Vertex limburg = new Vertex("Limburg Centraal");
@@ -55,6 +52,7 @@ public class Main {
         System.out.println("The Shortest Path To " + groningen.toString() + " = " + dijkstra.getShortestPathTo(groningen));
         System.out.println(groningen.getMinDistance() + " " + utrecht.getStaps().get(0).getWeightType());
 
+        //third journey
         Vertex eindhoven = new Vertex("Einhoven Airport");
         Vertex la = new Vertex("Los Angeles Airport");
         Vertex ny = new Vertex("New York Airport");
@@ -64,8 +62,37 @@ public class Main {
         ny.addNeighbour(new Vlucht(400, ny, la));
 
         dijkstra.computePath(eindhoven);
-        System.out.println("The Shortest Path To " + la.toString() + " = " + dijkstra.getShortestPathTo(la));
-        System.out.println(la.getMinDistance() + " " + eindhoven.getStaps().get(0).getWeightType());
+
+        Reis ELA = new Reis("Eindhoven to Los Angeles");
+        ELA.setStartPoint(eindhoven);
+        ELA.setTargetPoint(la);
+        ELA.addVertexes(dijkstra.getShortestPathTo(la));
+        ELA.setWeight(la.getMinDistance());
+        ELA.setWeightType(eindhoven.getStaps().get(0).getWeightType());
+
+        System.out.println(ELA.toString());
+
+        //fourth journey
+        Vertex berlin = new Vertex("Berlin Airport");
+        Vertex texas = new Vertex("texas Airport");
+        Vertex siliconValley = new Vertex("Silicon Valley Airport");
+
+        berlin.addNeighbour(new Vlucht(1000, berlin, texas));
+        berlin.addNeighbour(new Vlucht(1100, berlin, siliconValley));
+        texas.addNeighbour(new Vlucht(800, texas, siliconValley));
+
+        dijkstra.computePath(berlin);
+
+        Reis BSV = new Reis("Berlin to Silicon Valley");
+        BSV.setStartPoint(berlin);
+        BSV.setTargetPoint(siliconValley);
+        BSV.addVertexes(dijkstra.getShortestPathTo(siliconValley));
+        BSV.setWeight(siliconValley.getMinDistance());
+        BSV.setWeightType(berlin.getStaps().get(0).getWeightType());
+
+        System.out.println(BSV.toString());
+
+        System.out.println(BSV.compareTo(ELA));
     }
 }
 

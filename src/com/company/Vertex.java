@@ -7,7 +7,6 @@ import java.util.List;
 public class Vertex implements Comparable {
     private String name;
     private List<Stap> staps;
-    private boolean visited;
     private Vertex previosVertex;
     private double minDistance = Double.MAX_VALUE;
 
@@ -22,18 +21,6 @@ public class Vertex implements Comparable {
 
     public List<Stap> getStaps() {
         return staps;
-    }
-
-    public void setStaps(List<Stap> staps) {
-        this.staps = staps;
-    }
-
-    public boolean isVisited() {
-        return visited;
-    }
-
-    public void setVisited(boolean visited) {
-        this.visited = visited;
     }
 
     public Vertex getPreviosVertex() {

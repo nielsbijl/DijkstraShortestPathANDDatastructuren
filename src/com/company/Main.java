@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        Reis AE = new Reis("A to E");
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
         Vertex c = new Vertex("C");
@@ -24,8 +25,16 @@ public class Main {
         Dijkstra dijkstra = new Dijkstra();
         dijkstra.computePath(a);
 
+        AE.setStartPoint(a);
+        AE.setTargetPoint(e);
+        AE.addVertexes(dijkstra.getShortestPathTo(e));
+        AE.setWeight(e.getMinDistance());
+        AE.setWeightType(a.getStaps().get(0).getWeightType());
+
         System.out.println("The Shortest Path To " + e.toString() + " = " + dijkstra.getShortestPathTo(e));
         System.out.println(e.getMinDistance() + " " + a.getStaps().get(0).getWeightType());
+
+        System.out.println(AE.toString());
 
 
 

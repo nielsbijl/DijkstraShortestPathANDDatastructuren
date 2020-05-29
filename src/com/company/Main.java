@@ -92,6 +92,7 @@ public class Main {
 
         System.out.println(BSV.toString());
 
+        //if compareTo gives 0 means the train tickets are the same price!
         System.out.println(BSV.compareTo(ELA));
     }
 }

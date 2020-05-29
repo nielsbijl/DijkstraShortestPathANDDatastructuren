@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
+    double minDistanceEndPoint;
     public void computePath(Vertex sourceVertex) {
         sourceVertex.setMinDistance(0);
         PriorityQueue<Vertex> priorityQueue = new PriorityQueue<>();
@@ -13,10 +14,10 @@ public class Dijkstra {
         while (!priorityQueue.isEmpty()) {
             Vertex vertex = priorityQueue.poll();
 
-            for (Edge edge : vertex.getEdges()) {
-                Vertex v = edge.getTargetVertex();
-//                Vertex u = edge.getStartVertex();
-                double weight = edge.getWeight();
+            for (Stap stap : vertex.getStaps()) {
+                Vertex v = stap.getTargetVertex();
+//                Vertex u = stap.getStartVertex();
+                double weight = stap.getWeight();
                 double minDistance = vertex.getMinDistance() + weight;
 
                 if (minDistance < v.getMinDistance()) {
@@ -37,6 +38,11 @@ public class Dijkstra {
         }
 
         Collections.reverse(path);
+        this.minDistanceEndPoint = path.get(path.size() -1).getMinDistance();
         return path;
+    }
+
+    public double getMinDistanceEndPoint() {
+        return minDistanceEndPoint;
     }
 }

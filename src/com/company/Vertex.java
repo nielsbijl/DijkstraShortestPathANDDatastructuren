@@ -1,31 +1,31 @@
 package com.company;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Vertex implements Comparable {
     private String name;
-    private List<Edge> edges;
+    private List<Stap> staps;
     private boolean visited;
     private Vertex previosVertex;
     private double minDistance = Double.MAX_VALUE;
 
     public Vertex(String name) {
         this.name = name;
-        this.edges = new ArrayList<>();
+        this.staps = new ArrayList<>();
     }
 
-    public void addNeighbour(Edge edge) {
-        this.edges.add(edge);
+    public void addNeighbour(Stap stap) {
+        this.staps.add(stap);
     }
 
-    public List<Edge> getEdges() {
-        return edges;
+    public List<Stap> getStaps() {
+        return staps;
     }
 
-    public void setEdges(List<Edge> edges) {
-        this.edges = edges;
+    public void setStaps(List<Stap> staps) {
+        this.staps = staps;
     }
 
     public boolean isVisited() {
